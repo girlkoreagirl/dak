@@ -5,6 +5,10 @@ export const PRODUCT_DIRECTIONS = [
   { label: '탑 다운', value: 'top-down' },
   { label: '45도 각도', value: '45-degree angle' },
   { label: '측면', value: 'side profile' },
+  { label: '오른쪽에서 촬영', value: 'from the right' },
+  { label: '왼쪽에서 촬영', value: 'from the left' },
+  { label: '위에서 촬영', value: 'from above' },
+  { label: '밑에서 위로 촬영', value: 'from below' },
 ];
 
 export const LIGHTING_DIRECTIONS = [
@@ -21,9 +25,12 @@ export const LIGHTING_BRIGHTNESS_OPTIONS = [
 ];
 
 export const QUANTITY_OPTIONS = [
-  { label: '1개 (기본값)', value: 'a single item' },
+  { label: '1개', value: 'a single item' },
   { label: '2개', value: 'two items' },
   { label: '3개', value: 'three items' },
+  { label: '4개', value: 'four items' },
+  { label: '5개', value: 'five items' },
+  { label: '10개', value: 'ten items' },
 ];
 
 export const PRODUCT_ARRANGEMENT_OPTIONS = [

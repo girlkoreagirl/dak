@@ -15,6 +15,7 @@ interface ControlPanelProps {
   settings: Settings;
   setSettings: React.Dispatch<React.SetStateAction<Settings>>;
   onImageUpload: (base64: string, mimeType: string) => void;
+  onImageRemove: () => void;
   onGenerate: () => void;
   isLoading: boolean;
   hasUploadedImage: boolean;
@@ -61,7 +62,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ label, checked, onChange })
     </label>
 );
 
-const ControlPanel: React.FC<ControlPanelProps> = ({ settings, setSettings, onImageUpload, onGenerate, isLoading, hasUploadedImage }) => {
+const ControlPanel: React.FC<ControlPanelProps> = ({ settings, setSettings, onImageUpload, onImageRemove, onGenerate, isLoading, hasUploadedImage }) => {
     
     const handleSettingChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
         setSettings(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -77,7 +78,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ settings, setSettings, onIm
 
     return (
         <div className="w-full lg:w-96 bg-slate-800 p-6 shadow-lg h-full overflow-y-auto">
-            <ImageUploader onImageUpload={onImageUpload} />
+            <ImageUploader onImageUpload={onImageUpload} onImageRemove={onImageRemove} />
 
             <h2 className="text-sm font-semibold text-gray-300 mb-3">이미지 맞춤 설정</h2>
 

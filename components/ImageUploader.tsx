@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { UploadIcon, CameraIcon, RetakeIcon, CheckIcon } from './icons';
+import { UploadIcon, CameraIcon, RetakeIcon, CheckIcon, CloseIcon } from './icons';
 
 interface ImageUploaderProps {
   onImageUpload: (base64: string, mimeType: string) => void;
+  onImageRemove: () => void;
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
+const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, onImageRemove }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [cameraMode, setCameraMode] = useState(false);
@@ -88,6 +89,17 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
     }
   };
 
+  const handleRemoveImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setPreview(null);
+    const fileInput = document.querySelector('input[name="file_upload"]') as HTMLInputElement;
+    if (fileInput) {
+        fileInput.value = "";
+    }
+    onImageRemove();
+  };
+
   const startCamera = () => {
     setCameraMode(true);
     setPreview(null);
@@ -126,10 +138,19 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`flex justify-center items-center w-full h-48 px-4 transition bg-slate-800 border-2 border-dashed rounded-md appearance-none cursor-pointer hover:border-blue-400 focus:outline-none ${isDragging ? 'border-blue-400' : 'border-slate-600'}`}
+        className={`relative flex justify-center items-center w-full h-48 px-4 transition bg-slate-800 border-2 border-dashed rounded-md appearance-none hover:border-blue-400 focus:outline-none ${isDragging ? 'border-blue-400' : 'border-slate-600'} ${preview ? 'cursor-default' : 'cursor-pointer'}`}
       >
         {preview ? (
-          <img src={preview} alt="Preview" className="h-full w-full object-contain" />
+          <>
+            <img src={preview} alt="Preview" className="h-full w-full object-contain" />
+            <button
+              onClick={handleRemoveImage}
+              className="absolute top-2 right-2 p-1.5 bg-black bg-opacity-60 rounded-full text-white hover:bg-opacity-80 transition-opacity z-10"
+              aria-label="Remove image"
+            >
+              <CloseIcon className="w-5 h-5" />
+            </button>
+          </>
         ) : (
           <div className="flex flex-col items-center space-y-2 text-center">
             <UploadIcon className="w-10 h-10 text-gray-500" />
@@ -178,8 +199,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
                         <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white"></div>
                     </button>
                 </div>
-                <button onClick={() => setCameraMode(false)} className="absolute top-2 right-2 p-1 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <button onClick={() => setCameraMode(false)} className="absolute top-2 right-2 p-1.5 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75">
+                  <CloseIcon className="w-5 h-5" />
                 </button>
             </>
         )}
