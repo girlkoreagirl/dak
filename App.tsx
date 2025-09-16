@@ -14,12 +14,18 @@ const AppHeader: React.FC = () => (
             <div className="ml-4">
                 <h1 className="text-gray-200 font-semibold text-sm leading-tight">중국사업 / 이우시장 동행조사 / 로켓그로스 / 로켓배송 / 스마트스토어</h1>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
-                    <a href="https://open.kakao.com/o/gk5gtosf" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:underline">
-                        https://open.kakao.com/o/gk5gtosf
-                    </a>
-                    <a href="https://cafe.naver.com/kingshopping" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:underline">
-                        https://cafe.naver.com/kingshopping
-                    </a>
+                    <div className="text-xs">
+                        <span className="text-gray-400 mr-2">중국무역의 모든 상담/</span>
+                        <a href="https://open.kakao.com/o/gk5gtosf" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                            https://open.kakao.com/o/gk5gtosf
+                        </a>
+                    </div>
+                    <div className="text-xs">
+                        <span className="text-gray-400 mr-2">세무/절세/구매대행 부가세 신고의 모든 것.</span>
+                        <a href="https://cafe.naver.com/kingshopping" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                            https://cafe.naver.com/kingshopping
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
