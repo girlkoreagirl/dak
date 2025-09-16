@@ -1,0 +1,7 @@
+{
+  "name": "AI Product Photo Studio",
+  "description": "An AI-powered tool to transform your product photos into professional-grade images. Upload a photo, choose your desired settings for background, lighting, and arrangement, and let the AI generate a high-quality studio shot.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
